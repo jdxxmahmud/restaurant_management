@@ -27,7 +27,7 @@ public class Restaurant {
     private String websiteUrl;
     @Column(name = "PHONE")
     private String phone;
-    @Column(name = "OPENING_HOURSE")
+    @Column(name = "OPENING_HOURS")
     private String openingHours;
     @Column(name = "CAPACITY")
     private int capacity;
