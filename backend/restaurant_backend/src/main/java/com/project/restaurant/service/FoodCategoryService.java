@@ -1,7 +1,6 @@
 package com.project.restaurant.service;
 
 import com.project.restaurant.dto.FoodCategoryDTO;
-import com.project.restaurant.dto.RestaurantDTO;
 import com.project.restaurant.entity.FoodCategory;
 import com.project.restaurant.respository.FoodCategoryRepository;
 import lombok.RequiredArgsConstructor;

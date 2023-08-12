@@ -1,7 +1,6 @@
 package com.project.restaurant.restController;
 
 import com.project.restaurant.dto.FoodCategoryDTO;
-import com.project.restaurant.dto.RestaurantDTO;
 import com.project.restaurant.service.FoodCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,7 +13,7 @@ import java.util.List;
 @RequestMapping(value = "/api/food-category", method = RequestMethod.GET)
 @RequiredArgsConstructor
 public class FoodCategoryRestController {
-    private FoodCategoryService service;
+    private final FoodCategoryService service;
 
     @GetMapping(value = "/list")
     public ResponseEntity<List<FoodCategoryDTO>> getFoodCategories()
