@@ -29,10 +29,12 @@ public class Order {
     private Timestamp orderTime;
     @Column(name = "ESTIMATED_DELIVERY_TIME")
     private int estimatedDeliveryTime;
+    @Enumerated(EnumType.STRING)
     @Column(name = "ORDER_STATUS")
     private OrderStatus orderStatus;
     @Column(name = "TOTAL_AMOUNT")
     private double totalAmount;
+    @Enumerated(EnumType.STRING)
     @Column(name = "PAYMENT_STATUS")
     private PaymentStatus paymentStatus;
     @Column(name = "REMARKS")
