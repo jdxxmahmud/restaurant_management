@@ -8,8 +8,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
-@Table(name = "ORDERS")
+@Table(name = "orders")
 @Entity
 @Data
 @AllArgsConstructor
@@ -43,5 +45,16 @@ public class Order {
     private Long createdBy;
     @Column(name = "UPDATED_BY")
     private Long updatedBy;
+
+
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
+    @JoinTable(name = "order__dishes",
+            joinColumns = { @JoinColumn(name = "ORDER_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "DISH_ID") })
+    private Set<Dish> dishes = new HashSet<>();
 
 }

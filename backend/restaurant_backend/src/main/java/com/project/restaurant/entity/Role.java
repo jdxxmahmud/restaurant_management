@@ -17,6 +17,7 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
+    @Column(name = "NAME")
     private String name;
     @Column(name = "CREATED_AT")
     private Timestamp createdAt;
