@@ -21,11 +21,26 @@ const TopSideButtons = () => {
 
 const Restaurants = () => {
 
+    const [restaurantData, setRestaurantData] = useState([]);
+
+    function callYourAPI() {
+        fetch('http://localhost:8080/api/restaurants/list')
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                setRestaurantData(data);
+                console.log(data);
+            })
+    };
+
     const { restaurant } = useSelector(state => state.restaurant)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getRestaurantContent())
+        callYourAPI()
+        // dispatch(getRestaurantContent())
+        // console.log(restaurant);
     }, [])
 
     const openEditRestaurantModal = (item) => {
@@ -40,7 +55,7 @@ const Restaurants = () => {
 
     // const tableData = response.sort((a,b) => a.id > b.id ? 1 : -1 )
 
-    const DisplayData = restaurant.sort((a, b) => a.id > b.id ? 1 : -1).map(
+    const DisplayData = restaurantData.sort((a, b) => a.id > b.id ? 1 : -1).map(
         (item) => {
             return (
                 <tr key={item.id}>
@@ -91,6 +106,15 @@ const Restaurants = () => {
                         </thead>
                         <tbody>
                             {DisplayData}
+                            {/* {
+                                restaurant.map((l, k) => {
+                                    return (
+                                        <tr key={k}>
+                                            <td>{l.id}</td>
+                                        </tr>
+                                    )
+                                })
+                            } */}
                         </tbody>
                     </table>
                 </div>
