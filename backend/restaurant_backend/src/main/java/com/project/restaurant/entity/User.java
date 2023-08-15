@@ -23,14 +23,14 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
-    @Column(name = "ROLE_ID")
-    private Long roleId;
     @Column(name = "EMAIL")
     private String email;
     @Column(name = "PASSWORD")
     private String password;
     @Column(name = "NAME")
     private String name;
+    @Column(name = "ROLE")
+    private Role role;
     @Column(name = "PHONE_NUMBER")
     private String phoneNumber;
     @Column(name = "ADDRESS")
@@ -44,8 +44,7 @@ public class User implements UserDetails {
     @Column(name = "UPDATED_BY")
     private Long updatedBy;
     @Enumerated(EnumType.STRING)
-    @Column(name = "ROLE")
-    private Role role;
+
 
 
     @Override
