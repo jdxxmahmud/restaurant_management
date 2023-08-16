@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import { openModal } from "../common/modalSlice"
 import TitleCard from "../../components/Cards/TitleCard"
-import { getRestaurantContent } from './restaurantSlice';
+import { getRestaurantsApi } from './restaurantSlice';
 
 import { MODAL_BODY_TYPES, CONFIRMATION_MODAL_CLOSE_TYPES } from '../../utils/globalConstantUtil'
 
@@ -20,27 +20,12 @@ const TopSideButtons = () => {
 }
 
 const Restaurants = () => {
-
-    const [restaurantData, setRestaurantData] = useState([]);
-
-    function callYourAPI() {
-        fetch('http://localhost:8080/api/restaurants/list')
-            .then(response => {
-                return response.json()
-            })
-            .then(data => {
-                setRestaurantData(data);
-                console.log(data);
-            })
-    };
-
-    const { restaurant } = useSelector(state => state.restaurant)
+    const { data: restaurant } = useSelector(state => state.restaurant)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        callYourAPI()
-        // dispatch(getRestaurantContent())
-        // console.log(restaurant);
+        // callYourAPI()
+        dispatch(getRestaurantsApi())
     }, [])
 
     const openEditRestaurantModal = (item) => {
@@ -55,32 +40,32 @@ const Restaurants = () => {
 
     // const tableData = response.sort((a,b) => a.id > b.id ? 1 : -1 )
 
-    const DisplayData = restaurantData.sort((a, b) => a.id > b.id ? 1 : -1).map(
-        (item) => {
-            return (
-                <tr key={item.id}>
-                    <td>{item.name}</td>
-                    <td>{item.foundingYear}</td>
-                    <td>{item.email}</td>
-                    <td>{item.websiteUrl}</td>
-                    <td>{item.phone}</td>
-                    <td>{item.openingHours ? item.openingHours : "N/A"}</td>
-                    <td>{item.capacity}</td>
-                    <td>{item.open ? "Open" : "Closed"}</td>
-                    <td>{item.rating}</td>
-                    <td>{item.address}</td>
-                    <td>{item.city}</td>
-                    <td>
-                        <div className="join join-horizontal lg:join-horizontal">
-                            <button className="btn btn-sm btn-primary join-item" onClick={() => openEditRestaurantModal(item)}>Edit</button>
-                            <button className="btn btn-sm btn-danger join-item" onClick={() => openDeleteRestaurantModal(item.id)}>Delete</button>
-                        </div>
-                    </td>
-                </tr>
-            )
+    // const DisplayData = restaurantData.sort((a, b) => a.id > b.id ? 1 : -1).map(
+    //     (item) => {
+    //         return (
+    //             <tr key={item.id}>
+    //                 <td>{item.name}</td>
+    //                 <td>{item.foundingYear}</td>
+    //                 <td>{item.email}</td>
+    //                 <td>{item.websiteUrl}</td>
+    //                 <td>{item.phone}</td>
+    //                 <td>{item.openingHours ? item.openingHours : "N/A"}</td>
+    //                 <td>{item.capacity}</td>
+    //                 <td>{item.open ? "Open" : "Closed"}</td>
+    //                 <td>{item.rating}</td>
+    //                 <td>{item.address}</td>
+    //                 <td>{item.city}</td>
+    //                 <td>
+    //                     <div className="join join-horizontal lg:join-horizontal">
+    //                         <button className="btn btn-sm btn-primary join-item" onClick={() => openEditRestaurantModal(item)}>Edit</button>
+    //                         <button className="btn btn-sm btn-danger join-item" onClick={() => openDeleteRestaurantModal(item.id)}>Delete</button>
+    //                     </div>
+    //                 </td>
+    //             </tr>
+    //         )
 
-        }
-    )
+    //     }
+    // )
 
     return (
         <>
@@ -105,16 +90,8 @@ const Restaurants = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {DisplayData}
-                            {/* {
-                                restaurant.map((l, k) => {
-                                    return (
-                                        <tr key={k}>
-                                            <td>{l.id}</td>
-                                        </tr>
-                                    )
-                                })
-                            } */}
+                            {/* {DisplayData} */}
+
                         </tbody>
                     </table>
                 </div>

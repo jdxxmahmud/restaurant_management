@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import InputText from '../../../components/Input/InputText'
+import SelectBox from '../../../components/Input/SelectBox'
 import ErrorText from '../../../components/Typography/ErrorText'
 import { showNotification } from "../../common/headerSlice"
 import { addFoodCategory } from "../foodCategorySlice"
@@ -50,7 +51,7 @@ function AddNewFoodCategoryModal({ closeModal }) {
             <InputText type="text" defaultValue={foodCategoryObj.name} updateType="name" containerStyle="mt-4" labelTitle="Name" updateFormValue={updateFormValue} />
 
             <InputText type="text" defaultValue={foodCategoryObj.description} updateType="description" containerStyle="mt-4" labelTitle="Description" updateFormValue={updateFormValue} />
-
+            <SelectBox defaultValue={{ name: 'b', value: 'b' }} options={[{ name: 'a', value: 'a' }, { name: 'b', value: 'b' }, { name: 'c', value: 'c' }]} />
 
             <ErrorText styleClass="mt-16">{errorMessage}</ErrorText>
             <div className="modal-action">
